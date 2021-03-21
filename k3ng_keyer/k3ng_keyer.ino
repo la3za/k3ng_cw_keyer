@@ -7892,7 +7892,7 @@ void command_mode() {
  
         #ifdef FEATURE_COMMAND_MODE_PROGRESSIVE_5_CHAR_ECHO_PRACTICE
           case 112:  // U - 5 Character Echo Practice
-            command_progressive_5_char_echo_practice(); // would like to replace by int call signs Sverre LA3ZA
+            command_progressive_5_char_echo_practice(); 
             stay_in_command_mode = 0;
             break;
         #endif //FEATURE_COMMAND_MODE_PROGRESSIVE_5_CHAR_PRACTICE
@@ -8171,7 +8171,7 @@ void command_progressive_5_char_echo_practice() {
     //     break; 
     // } //switch (practice_mode)
 
-    // Sverre LA3ZA - finish after not too many repetitions 2019.05.09
+    //  LA3ZA - finish after not too many repetitions 2019.05.09
     loop2 = PRACTICE_MAX_ATTEMPTS;
     while (loop2) {
       user_send_loop = 1;
@@ -8271,7 +8271,7 @@ void command_progressive_5_char_echo_practice() {
               progressive_step_counter++;
             }                                                                             // end if (progressive_step_counter < 6)
             if (progressive_step_counter == 6) {                                          // we get here if the five character string is correct
-              loop2 = 0;
+              loop2 = loop2-1; // was 0, LA3ZA - finish after not too many repetitions 2019.05.09
               if (correct_answer_led) digitalWrite(correct_answer_led, HIGH);             // set the correct answer LED high
               #ifdef FEATURE_DISPLAY
                 lcd_center_print_timed("Success!", 0, default_display_msg_delay);
@@ -8304,6 +8304,9 @@ void command_progressive_5_char_echo_practice() {
             send_char(' ',0);
             loop2 = 0;
           } else {                                                                        // wrong answer
+             // LA3ZA - finish after not too many repetitions 2019.05.09
+            loop2 = loop2-1;
+    
             boop();
             send_char(' ',0);
             send_char(' ',0);
@@ -14693,6 +14696,9 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
           } else {                                                                      // characters are wrong
             if (wrong_answer_led)   digitalWrite(wrong_answer_led,  HIGH);              // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);              // clear the correct answer LED
+            // LA3ZA - finish after not too many repetitions 2019.05.09
+            loop2 = loop2-1;
+          
             boop();
             send_char(' ', 0);
             send_char(' ', 0);
@@ -14704,6 +14710,9 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             send_char(' ',0);        
             loop2 = 0;
           } else {
+            // LA3ZA - finish after not too many repetitions 2019.05.09
+            loop2 = loop2-1;
+         
             boop();
             send_char(' ',0);
             send_char(' ',0);
