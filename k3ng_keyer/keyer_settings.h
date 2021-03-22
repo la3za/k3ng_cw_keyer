@@ -314,3 +314,8 @@
   #define command_error "ERR"
 
 #endif //FEATURE_COMMAND_MODE_ENHANCED_CMD_ACKNOWLEDGEMENT
+
+#if defined FEATURE_TRAINING_COMMAND_LINE_INTERFACE
+      // make it 100 or so to repeat indefinetely as before:
+  #define PRACTICE_MAX_ATTEMPTS 4 // LA3ZA: In echo training mode give up and present new word after so many erroneous attempts. OK for paddle training
+#endif //FEATURE_TRAINING_COMMAND_LINE_INTERFACE

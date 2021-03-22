@@ -8169,7 +8169,7 @@ void command_progressive_5_char_echo_practice() {
     //     break; 
     // } //switch (practice_mode)
     
-    loop2 = 1;
+    loop2 = PRACTICE_MAX_ATTEMPTS;                                                            // LA3ZA- give up after some attempts
     while (loop2) {
       user_send_loop = 1;
       user_sent_cw = "";
@@ -8268,7 +8268,7 @@ void command_progressive_5_char_echo_practice() {
               progressive_step_counter++;
             }                                                                             // end if (progressive_step_counter < 6)
             if (progressive_step_counter == 6) {                                          // we get here if the five character string is correct
-              loop2 = 0;
+              loop2 = loop2-1;                                                            // Finish after not too many repetions - LA3ZA
               if (correct_answer_led) digitalWrite(correct_answer_led, HIGH);             // set the correct answer LED high
               #ifdef FEATURE_DISPLAY
                 lcd_center_print_timed("Success!", 0, default_display_msg_delay);
@@ -8301,6 +8301,7 @@ void command_progressive_5_char_echo_practice() {
             send_char(' ',0);
             loop2 = 0;
           } else {                                                                        // wrong answer
+            loop2 = loop2-1;                                                            // Finish after not too many repetions - LA3ZA
             boop();
             send_char(' ',0);
             send_char(' ',0);
@@ -14559,11 +14560,9 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
 
     } // switch (practice_mode)
     
-<<<<<<< HEAD
+
     loop2 = PRACTICE_MAX_ATTEMPTS; // was 1, LA3ZA
-=======
-    loop2 = 1;
->>>>>>> parent of 61f3d3c (Revert "Revert "LA3ZA in startup +"")
+
     
     while (loop2){
       user_send_loop = 1;
@@ -14692,6 +14691,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
           } else {                                                                      // characters are wrong
             if (wrong_answer_led)   digitalWrite(wrong_answer_led,  HIGH);              // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);              // clear the correct answer LED
+            loop2 = loop2-1; // was 0, LA3ZA - finish after not too many repetitions 2019.05.09
             boop();
             send_char(' ', 0);
             send_char(' ', 0);
@@ -14703,6 +14703,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             send_char(' ',0);        
             loop2 = 0;
           } else {
+            loop2 = loop2-1; // was 0, LA3ZA - finish after not too many repetitions 2019.05.09
             boop();
             send_char(' ',0);
             send_char(' ',0);
