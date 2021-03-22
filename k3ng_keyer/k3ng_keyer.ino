@@ -1521,9 +1521,6 @@ If you offer a hardware kit using this software, show your appreciation by sendi
   #define noTone noNewTone
 #endif //FEATURE_SIDETONE_NEWTONE
 
-#define LCD_pwm 45 // PWM on Mega pins 2 - 13 or 44 - 46
-
-
 #if defined(FEATURE_SLEEP)
   #include <avr/sleep.h>  // It should be different library for ARM sp5iou
 #endif 
@@ -2286,10 +2283,6 @@ void setup()
   initialize_web_server();
   initialize_sd_card();  
   initialize_debug_startup();
-  
-  pinMode(LCD_pwm, OUTPUT);
-  digitalWrite(LCD_pwm, HIGH);   // sets the backlight LED to full
-
 
 }
 
