@@ -14567,7 +14567,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
 
     } // switch (practice_mode)
     
-    loop2 = PRACTICE_MAX_ATTEMPTS; // was 1
+    loop2 = PRACTICE_MAX_ATTEMPTS; // was 1, LA3ZA
     
     while (loop2){
       user_send_loop = 1;
@@ -15177,7 +15177,7 @@ void wordsworth_practice(PRIMARY_SERIAL_CLS * port_to_use,byte practice_type)
 
     while ((loop3) && (repetitions < configuration.wordsworth_repetition)){ // word sending loop
 
-      loop2 = 1;
+      loop2 = PRACTICE_MAX_ATTEMPTS; // was 1, LA3ZA
       x = 0;
 
       while (loop2){ //character sending loop
@@ -15358,7 +15358,7 @@ void serial_practice_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte practice_
         break; 
     } //switch(practice_type)
 
-    loop2 = 1;
+    loop2 = PRACTICE_MAX_ATTEMPTS; // was 1, LA3ZA
     
     while (loop2){
   
