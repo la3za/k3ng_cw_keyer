@@ -2287,8 +2287,7 @@ void setup()
   initialize_sd_card();  
   initialize_debug_startup();
   
-  pinMode(LCD_pwm, OUTPUT);
-  digitalWrite(LCD_pwm, HIGH);   // sets the backlight LED to full
+
 
 
 }

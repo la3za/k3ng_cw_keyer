@@ -186,7 +186,7 @@
 
 #if defined(FEATURE_LCD_BACKLIGHT_AUTO_DIM)
   #define keyer_power_led_awake_duty 255   // PWM duty cycle. 0 is 0%, 255 is 100%
-  #define keyer_power_led_asleep_duty 25   // 25 is quite dim. Use 0 for off
+  #define keyer_power_led_asleep_duty 50   // 25 is quite dim. Use 0 for off
 #endif
 
 #if defined(FEATURE_ETHERNET)
