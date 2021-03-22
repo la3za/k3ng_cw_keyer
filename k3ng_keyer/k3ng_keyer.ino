@@ -1435,8 +1435,6 @@ If you offer a hardware kit using this software, show your appreciation by sendi
 
 #include "keyer.h"
 
-#include "la3za.h"
-
 #ifdef FEATURE_EEPROM_E24C1024
   #include <E24C1024.h>
   #define EEPROM EEPROM1024
@@ -7892,7 +7890,7 @@ void command_mode() {
  
         #ifdef FEATURE_COMMAND_MODE_PROGRESSIVE_5_CHAR_ECHO_PRACTICE
           case 112:  // U - 5 Character Echo Practice
-            command_progressive_5_char_echo_practice(); // would like to replace by int call signs Sverre LA3ZA
+            command_progressive_5_char_echo_practice();
             stay_in_command_mode = 0;
             break;
         #endif //FEATURE_COMMAND_MODE_PROGRESSIVE_5_CHAR_PRACTICE
@@ -8170,9 +8168,8 @@ void command_progressive_5_char_echo_practice() {
     //     cw_to_send_to_user = word_buffer;
     //     break; 
     // } //switch (practice_mode)
-
-    // Sverre LA3ZA - finish after not too many repetitions 2019.05.09
-    loop2 = PRACTICE_MAX_ATTEMPTS;
+    
+    loop2 = 1;
     while (loop2) {
       user_send_loop = 1;
       user_sent_cw = "";
@@ -9438,10 +9435,8 @@ void send_char(byte cw_char, byte omit_letterspace)
       case '*': send_the_dits_and_dahs("-...-.-"); break;
       case '.': send_the_dits_and_dahs(".-.-.-");  break;
       case ',': send_the_dits_and_dahs("--..--");  break;
-      // Commented out Sverre LA3ZA 2019.05.10: 
- //   case '!': send_the_dits_and_dahs("--..--");  break;  //sp5iou 20180328
- // Uncommented Sverre LA3ZA 2019.05.10:
-      case '!': send_the_dits_and_dahs("-.-.--");break;//sp5iou 20180328
+      case '!': send_the_dits_and_dahs("--..--");  break;  //sp5iou 20180328
+      //case '!': send_the_dits_and_dahs("-.-.--");break;//sp5iou 20180328
       case '\'': send_the_dits_and_dahs(".----."); break; // apostrophe
       case '(': send_the_dits_and_dahs("-.--.");   break;
       case ')': send_the_dits_and_dahs("-.--.-");  break;
@@ -14083,7 +14078,7 @@ String generate_callsign(byte callsign_mode) {
 
   nextchar = random(65,91);               // generate first letter after number
   callsign = callsign + nextchar;
-  if ((random(1,101) < 80) || (callsign_mode == CALLSIGN_CANADA)) {                  // randomly put a second character after the number
+  if ((random(1,101) < 40) || (callsign_mode == CALLSIGN_CANADA)) {                  // randomly put a second character after the number
     nextchar = random(65,91);
     callsign = callsign + nextchar;
     if ((random(1,101) < 96) || (callsign_mode == CALLSIGN_CANADA)) {              // randomly put a third character after the number
@@ -14564,7 +14559,11 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
 
     } // switch (practice_mode)
     
+<<<<<<< HEAD
     loop2 = PRACTICE_MAX_ATTEMPTS; // was 1, LA3ZA
+=======
+    loop2 = 1;
+>>>>>>> parent of 61f3d3c (Revert "Revert "LA3ZA in startup +"")
     
     while (loop2){
       user_send_loop = 1;
@@ -15956,7 +15955,7 @@ int convert_cw_number_to_ascii (long number_in)
       #if !defined(OPTION_PROSIGN_SUPPORT)
         case 111212: return 62; break; // SK (stored as ascii > ) // sp5iou
       #endif
-      case 12121: return '+'; break; // AR (store as ascii < ) // sp5iou
+      case 12121: return 60; break; // AR (store as ascii < ) // sp5iou
     #endif //OPTION_PS2_NON_ENGLISH_CHAR_LCD_DISPLAY_SUPPORT
 
 
